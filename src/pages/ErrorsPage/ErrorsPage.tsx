@@ -1,16 +1,16 @@
 import {useNavigate, useParams} from 'react-router-dom';
 import {PageTitle} from '@/shared/ui/PageTitle';
 import {PageContainer} from '@/shared/ui/PageContainer';
-import {LogsFilters} from '@/features/logs/ui/LogsFilters/LogsFilters';
-import {LogsTable} from '@/features/logs/ui/LogsTable';
 import {PaginationWithControls} from '@/shared/ui/PaginationWithControls';
-import {useLogs} from '@/features/logs/hooks/useLogs';
+import {useErrors} from '@/features/errors/hooks/useErrors';
+import {ErrorsTable} from '@/features/errors/ui/ErrorsTable';
+import {ErrorsFilters} from '@/features/errors/ui/ErrorsFilters';
 
-const LogsPage = () => {
+const ErrorsPage = () => {
     const {projectId} = useParams();
     const navigate = useNavigate();
     const {
-        logs,
+        errors,
         loading,
         error,
         total,
@@ -21,23 +21,23 @@ const LogsPage = () => {
         setPageSize,
         handleFilterChange,
         handleResetFilters,
-        handleLoadLogs,
-    } = useLogs({projectId});
+        handleLoadErrors,
+    } = useErrors({projectId});
 
     return (
         <PageContainer>
-            <PageTitle title={'Логи'} />
-            <LogsFilters
+            <PageTitle title={'Ошибки'} />
+            <ErrorsFilters
                 fields={filters}
                 onFilterChange={handleFilterChange}
                 onResetFilters={handleResetFilters}
             />
-            <LogsTable
-                logs={logs}
+            <ErrorsTable
+                errors={errors}
                 loading={loading}
                 error={error}
                 navigate={navigate}
-                onRetry={handleLoadLogs}
+                onRetry={handleLoadErrors}
             />
             <PaginationWithControls
                 page={page}
@@ -50,4 +50,4 @@ const LogsPage = () => {
     );
 };
 
-export default LogsPage;
+export default ErrorsPage;
