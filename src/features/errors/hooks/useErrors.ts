@@ -22,7 +22,7 @@ export const useErrors = ({projectId, initialPage = 1, initialPageSize = 50}: Us
         timeTo: null,
     });
 
-    const handleLoadErrors = useCallback(async () => {
+    const handleLoad = useCallback(async () => {
         try {
             setLoading(true);
             setError(null);
@@ -39,8 +39,8 @@ export const useErrors = ({projectId, initialPage = 1, initialPageSize = 50}: Us
     }, [projectId, page, pageSize, filters]);
 
     useEffect(() => {
-        handleLoadErrors();
-    }, [handleLoadErrors]);
+        handleLoad();
+    }, [handleLoad]);
 
     const handleFilterChange = useCallback((name: string, value: string | number | null) => {
         setFilters((prev) => ({...prev, [name]: value}));
@@ -68,6 +68,6 @@ export const useErrors = ({projectId, initialPage = 1, initialPageSize = 50}: Us
         setPageSize,
         handleFilterChange,
         handleResetFilters,
-        handleLoadErrors,
+        handleLoad,
     };
 };

@@ -25,6 +25,7 @@ export const ProjectsTable = ({projects, loading, error, navigate, onRetry}: Pro
                 emptyMessage="Нет доступных проектов"
                 verticalAlign="middle"
                 wordWrap
+                edgePadding
             />
         </Card>
     );

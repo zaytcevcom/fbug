@@ -22,7 +22,7 @@ export const LogsTable = ({logs, loading, error, navigate, onRetry}: LogsTablePr
             <Table
                 data={logs}
                 columns={getLogsTableColumns(navigate)}
-                emptyMessage="Логи не найдены"
+                emptyMessage="Список логов пуст"
                 verticalAlign="middle"
                 wordWrap
             />

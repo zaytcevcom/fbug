@@ -22,7 +22,7 @@ export const ErrorsTable = ({errors, loading, error, navigate, onRetry}: ErrorsT
             <Table
                 data={errors}
                 columns={getErrorsTableColumns(navigate)}
-                emptyMessage="Ошибки не найдены"
+                emptyMessage="Список ошибок пуст"
                 verticalAlign="middle"
                 wordWrap
             />

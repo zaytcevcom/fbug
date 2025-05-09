@@ -53,7 +53,7 @@ export const getErrorsTableColumns = (navigate: NavigateFunction) => [
         name: 'Действия',
         template: (err: Err) => (
             <Button view="flat" size="s" onClick={() => navigate(getErrorPath(err.id))}>
-                Детали <Icon data={ArrowRight} size={14} />
+                Подробнее <Icon data={ArrowRight} size={14} />
             </Button>
         ),
         width: 120,

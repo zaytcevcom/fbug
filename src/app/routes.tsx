@@ -4,6 +4,7 @@ import {RouteObject} from 'react-router-dom';
 import {DashboardPage} from '@/pages/DashboardPage/DashboardPage';
 import {NotFoundPage} from '@/pages/NotFoundPage';
 import ErrorsPage from '@/pages/ErrorsPage/ErrorsPage';
+import ProjectPage from '@/pages/ProjectPage/ProjectPage';
 
 export const routes: RouteObject[] = [
     {
@@ -16,7 +17,7 @@ export const routes: RouteObject[] = [
     },
     {
         path: '/projects/:projectId',
-        element: <LogsPage />,
+        element: <ProjectPage />,
     },
     {
         path: '/logs',

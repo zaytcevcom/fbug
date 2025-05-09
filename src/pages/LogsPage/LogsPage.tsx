@@ -21,7 +21,7 @@ const LogsPage = () => {
         setPageSize,
         handleFilterChange,
         handleResetFilters,
-        handleLoadLogs,
+        handleLoad,
     } = useLogs({projectId});
 
     return (
@@ -37,7 +37,7 @@ const LogsPage = () => {
                 loading={loading}
                 error={error}
                 navigate={navigate}
-                onRetry={handleLoadLogs}
+                onRetry={handleLoad}
             />
             <PaginationWithControls
                 page={page}

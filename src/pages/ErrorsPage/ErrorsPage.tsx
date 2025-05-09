@@ -21,7 +21,7 @@ const ErrorsPage = () => {
         setPageSize,
         handleFilterChange,
         handleResetFilters,
-        handleLoadErrors,
+        handleLoad,
     } = useErrors({projectId});
 
     return (
@@ -37,7 +37,7 @@ const ErrorsPage = () => {
                 loading={loading}
                 error={error}
                 navigate={navigate}
-                onRetry={handleLoadErrors}
+                onRetry={handleLoad}
             />
             <PaginationWithControls
                 page={page}

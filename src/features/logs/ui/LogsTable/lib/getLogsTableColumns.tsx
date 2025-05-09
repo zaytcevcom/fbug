@@ -54,7 +54,7 @@ export const getLogsTableColumns = (navigate: NavigateFunction) => [
         name: 'Действия',
         template: (log: Log) => (
             <Button view="flat" size="s" onClick={() => navigate(getLogPath(log.id))}>
-                Детали <Icon data={ArrowRight} size={14} />
+                Подробнее <Icon data={ArrowRight} size={14} />
             </Button>
         ),
         width: 120,
