@@ -4,12 +4,11 @@ import {LogsFilters} from '@/features/logs/ui/LogsFilters/LogsFilters';
 import {LogsTable} from '@/features/logs/ui/LogsTable';
 import {PaginationWithControls} from '@/shared/ui/PaginationWithControls';
 import {useLogs} from '@/features/logs/hooks/useLogs';
-import {Card, Text as GravityText, Icon, Tab, TabList} from '@gravity-ui/uikit';
+import {Text as GravityText, Icon, Tab, TabList} from '@gravity-ui/uikit';
 import {useEffect, useState} from 'react';
 import {ErrorsFilters} from '@/features/errors/ui/ErrorsFilters';
 import {ErrorsTable} from '@/features/errors/ui/ErrorsTable';
 import {useErrors} from '@/features/errors/hooks/useErrors';
-import {CopyInput} from '@/shared/ui/CopyInput';
 import {useProject} from '@/features/projects/hooks/useProject';
 import {BookOpen, CircleExclamation, TriangleExclamation} from '@gravity-ui/icons';
 import {DataLoader} from '@/shared/ui/DataLoader';
@@ -99,15 +98,7 @@ const ProjectPage = () => {
                 </Tab>
             </TabList>
 
-            {activeTab === 'quickStart' && (
-                <>
-                    <Card view="filled" theme={'info'} style={{padding: '16px', margin: '16px 0'}}>
-                        <CopyInput label={'DSN: '} value={dsn} size={'l'} />
-                    </Card>
-
-                    <QuickStart language={'php'} dsn={dsn ?? ''} />
-                </>
-            )}
+            {activeTab === 'quickStart' && <QuickStart language={'php'} dsn={dsn ?? ''} />}
 
             {activeTab === 'errors' && (
                 <>
