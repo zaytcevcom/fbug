@@ -20,6 +20,10 @@ export const routes: RouteObject[] = [
         element: <ProjectPage />,
     },
     {
+        path: '/projects/:projectId/error-groups/:groupId',
+        element: <ErrorsPage />,
+    },
+    {
         path: '/logs',
         element: <LogsPage />,
     },

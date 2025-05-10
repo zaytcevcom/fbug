@@ -1,10 +1,10 @@
 import {NavigateFunction} from 'react-router';
 import {Log} from '@/entities/log/model/types';
-import {Button, Text as GravityText, Icon, Label} from '@gravity-ui/uikit';
+import {Button, Text as GravityText, Icon, Label, TableColumnConfig} from '@gravity-ui/uikit';
 import {ArrowRight} from '@gravity-ui/icons';
 import {getLogPath} from '@/app/url-generators';
 
-export const getLogsTableColumns = (navigate: NavigateFunction) => [
+export const getLogsTableColumns = (navigate: NavigateFunction): TableColumnConfig<Log>[] => [
     {
         id: 'time',
         name: 'Время',

@@ -7,7 +7,7 @@ import {ErrorsTable} from '@/features/errors/ui/ErrorsTable';
 import {ErrorsFilters} from '@/features/errors/ui/ErrorsFilters';
 
 const ErrorsPage = () => {
-    const {projectId} = useParams();
+    const {projectId, groupId} = useParams();
     const navigate = useNavigate();
     const {
         errors,
@@ -22,7 +22,7 @@ const ErrorsPage = () => {
         handleFilterChange,
         handleResetFilters,
         handleLoad,
-    } = useErrors({projectId});
+    } = useErrors({projectId, groupId});
 
     return (
         <PageContainer>

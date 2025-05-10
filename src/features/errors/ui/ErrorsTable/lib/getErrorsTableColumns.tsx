@@ -1,10 +1,10 @@
 import {NavigateFunction} from 'react-router';
-import {Button, Text as GravityText, Icon} from '@gravity-ui/uikit';
+import {Button, Text as GravityText, Icon, TableColumnConfig} from '@gravity-ui/uikit';
 import {ArrowRight} from '@gravity-ui/icons';
 import {getErrorPath} from '@/app/url-generators';
 import {Err} from '@/entities/error/model/types';
 
-export const getErrorsTableColumns = (navigate: NavigateFunction) => [
+export const getErrorsTableColumns = (navigate: NavigateFunction): TableColumnConfig<Err>[] => [
     {
         id: 'time',
         name: 'Время',

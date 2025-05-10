@@ -1,10 +1,12 @@
 import {Project} from '@/entities/project/model/types';
-import {Button, Text as GravityText, Icon, Link} from '@gravity-ui/uikit';
+import {Button, Text as GravityText, Icon, Link, TableColumnConfig} from '@gravity-ui/uikit';
 import {ArrowRight, Folder} from '@gravity-ui/icons';
 import {NavigateFunction} from 'react-router';
 import {getProjectPath} from '@/app/url-generators';
 
-export const getProjectsTableColumns = (navigate: NavigateFunction) => [
+export const getProjectsTableColumns = (
+    navigate: NavigateFunction,
+): TableColumnConfig<Project>[] => [
     {
         id: 'name',
         name: 'Название проекта',

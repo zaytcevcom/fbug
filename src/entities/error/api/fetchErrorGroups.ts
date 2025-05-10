@@ -1,14 +1,13 @@
 import {API_BASE_URL} from '@/shared/config/api';
-import {Err} from '@/entities/error/model/types';
+import {ErrGroup} from '@/entities/error/model/types';
 
-interface ErrorsResponse {
+interface ErrorGroupsResponse {
     count: number;
-    items: Err[];
+    items: ErrGroup[];
 }
 
-interface FetchErrorsParams {
+interface FetchErrorGroupsParams {
     projectId?: string;
-    groupId?: string;
     page: number;
     pageSize: number;
     filters: {
@@ -18,25 +17,23 @@ interface FetchErrorsParams {
     };
 }
 
-export const fetchErrors = async ({
+export const fetchErrorGroups = async ({
     projectId,
-    groupId,
     page,
     pageSize,
     filters,
-}: FetchErrorsParams): Promise<ErrorsResponse> => {
+}: FetchErrorGroupsParams): Promise<ErrorGroupsResponse> => {
     const params = new URLSearchParams({
         sort: 'desc',
         limit: pageSize.toString(),
         offset: ((page - 1) * pageSize).toString(),
         ...(projectId && {projectId}),
-        ...(groupId && {groupId}),
         ...(filters.search && {search: filters.search}),
         ...(filters.timeFrom && {timeFrom: filters.timeFrom.toString()}),
         ...(filters.timeTo && {timeTo: filters.timeTo.toString()}),
     });
 
-    const response = await fetch(`${API_BASE_URL}/errors?${params}`);
+    const response = await fetch(`${API_BASE_URL}/error-groups?${params}`);
 
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

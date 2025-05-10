@@ -5,15 +5,15 @@ import {LogsTable} from '@/features/logs/ui/LogsTable';
 import {PaginationWithControls} from '@/shared/ui/PaginationWithControls';
 import {useLogs} from '@/features/logs/hooks/useLogs';
 import {Text as GravityText} from '@gravity-ui/uikit';
-import {ErrorsFilters} from '@/features/errors/ui/ErrorsFilters';
-import {ErrorsTable} from '@/features/errors/ui/ErrorsTable';
-import {useErrors} from '@/features/errors/hooks/useErrors';
 import {useProject} from '@/features/projects/hooks/useProject';
 import {DataLoader} from '@/shared/ui/DataLoader';
 import {DataFetchError} from '@/shared/ui/DataFetchError';
 import QuickStart from '@/shared/ui/QuickStart/QuickStart';
 import {useState} from 'react';
 import ProjectTabs, {TabsState} from '@/features/projects/ui/ProjectTabs/ProjectTabs';
+import {ErrorGroupsFilters} from '@/features/errors/ui/ErrorGroupsFilters';
+import {ErrorGroupsTable} from '@/features/errors/ui/ErrorGroupsTable';
+import {useErrorGroups} from '@/features/errors/hooks/useErrorGroups';
 
 const ProjectPage = () => {
     const {projectId} = useParams();
@@ -37,7 +37,7 @@ const ProjectPage = () => {
     } = useLogs({projectId});
 
     const {
-        errors,
+        errorGroups: errors,
         loading: errorsLoading,
         error: errorsError,
         total: errorsTotal,
@@ -49,18 +49,18 @@ const ProjectPage = () => {
         handleFilterChange: errorsHandleFilterChange,
         handleResetFilters: errorsHandleResetFilters,
         handleLoad: errorsHandleLoad,
-    } = useErrors({projectId});
+    } = useErrorGroups({projectId});
 
     const handleRetry = () => {
         window.location.reload();
     };
 
-    if (loading) return <DataLoader />;
+    if (!project || !dsn || loading) return <DataLoader />;
     if (error) return <DataFetchError errorMessage={error} onRetry={handleRetry} />;
 
     return (
         <PageContainer>
-            <GravityText variant="header-1">{project?.name}</GravityText>
+            <GravityText variant="header-1">{project.name}</GravityText>
 
             <ProjectTabs
                 activeTab={activeTab}
@@ -69,16 +69,17 @@ const ProjectPage = () => {
                 logsTotal={logsTotal}
             />
 
-            {activeTab === TabsState.QUICK_START && <QuickStart language={'php'} dsn={dsn ?? ''} />}
+            {activeTab === TabsState.QUICK_START && <QuickStart language={'php'} dsn={dsn} />}
 
             {activeTab === TabsState.ERRORS && (
                 <>
-                    <ErrorsFilters
+                    <ErrorGroupsFilters
                         fields={errorsFilters}
                         onFilterChange={errorsHandleFilterChange}
                         onResetFilters={errorsHandleResetFilters}
                     />
-                    <ErrorsTable
+                    <ErrorGroupsTable
+                        projectId={project.id}
                         errors={errors}
                         loading={errorsLoading}
                         error={errorsError}
