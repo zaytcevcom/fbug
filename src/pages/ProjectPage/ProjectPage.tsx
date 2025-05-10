@@ -4,7 +4,7 @@ import {LogsFilters} from '@/features/logs/ui/LogsFilters/LogsFilters';
 import {LogsTable} from '@/features/logs/ui/LogsTable';
 import {PaginationWithControls} from '@/shared/ui/PaginationWithControls';
 import {useLogs} from '@/features/logs/hooks/useLogs';
-import {Breadcrumbs, BreadcrumbsItem, Card, Icon, Tab, TabList} from '@gravity-ui/uikit';
+import {Card, Icon, Tab, TabList, Text as GravityText} from '@gravity-ui/uikit';
 import {useEffect, useState} from 'react';
 import {ErrorsFilters} from '@/features/errors/ui/ErrorsFilters';
 import {ErrorsTable} from '@/features/errors/ui/ErrorsTable';
@@ -77,9 +77,7 @@ const ProjectPage = () => {
 
     return (
         <PageContainer>
-            <Breadcrumbs>
-                <BreadcrumbsItem>{project?.name}</BreadcrumbsItem>
-            </Breadcrumbs>
+            <GravityText variant="header-1">{project?.name}</GravityText>
             <TabList
                 style={{marginBottom: '16px'}}
                 size={'xl'}
