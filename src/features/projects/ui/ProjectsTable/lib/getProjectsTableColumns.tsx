@@ -1,6 +1,6 @@
 import {Project} from '@/entities/project/model/types';
-import {Button, Text as GravityText, Icon, Link, TableColumnConfig} from '@gravity-ui/uikit';
-import {ArrowRight, Folder} from '@gravity-ui/icons';
+import {Text as GravityText, Icon, Link, TableColumnConfig} from '@gravity-ui/uikit';
+import {Folder} from '@gravity-ui/icons';
 import {NavigateFunction} from 'react-router';
 import {getProjectPath} from '@/app/url-generators';
 
@@ -9,7 +9,7 @@ export const getProjectsTableColumns = (
 ): TableColumnConfig<Project>[] => [
     {
         id: 'name',
-        name: 'Название проекта',
+        name: 'Название',
         template: (project: Project) => {
             const url = getProjectPath(project.id);
 
@@ -22,14 +22,5 @@ export const getProjectsTableColumns = (
                 </Link>
             );
         },
-    },
-    {
-        id: 'actions',
-        name: 'Действия',
-        template: (project: Project) => (
-            <Button view="outlined" size="m" onClick={() => navigate(getProjectPath(project.id))}>
-                Перейти <Icon data={ArrowRight} size={14} />
-            </Button>
-        ),
     },
 ];

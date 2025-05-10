@@ -25,7 +25,6 @@ export const getErrorGroupsTableColumns = (
                 </GravityText>
             </>
         ),
-        width: 300,
     },
     {
         id: 'counter',

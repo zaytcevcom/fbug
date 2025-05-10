@@ -14,6 +14,7 @@ import ProjectTabs, {TabsState} from '@/features/projects/ui/ProjectTabs/Project
 import {ErrorGroupsFilters} from '@/features/errors/ui/ErrorGroupsFilters';
 import {ErrorGroupsTable} from '@/features/errors/ui/ErrorGroupsTable';
 import {useErrorGroups} from '@/features/errors/hooks/useErrorGroups';
+import {ErrorGroupsStats} from '@/features/errors/ui/ErrorGroupsStats';
 
 const ProjectPage = () => {
     const {projectId} = useParams();
@@ -73,6 +74,8 @@ const ProjectPage = () => {
 
             {activeTab === TabsState.ERRORS && (
                 <>
+                    <ErrorGroupsStats monthly={500} weekly={130} daily={43} />
+
                     <ErrorGroupsFilters
                         fields={errorsFilters}
                         onFilterChange={errorsHandleFilterChange}

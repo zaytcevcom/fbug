@@ -1,5 +1,5 @@
 import {MenuItem} from '@gravity-ui/navigation/build/esm/components/types';
-import {Briefcase, Database, House, LogoStackOverflow} from '@gravity-ui/icons';
+import {Briefcase, CircleExclamation, House, TriangleExclamation} from '@gravity-ui/icons';
 
 export const getMenuItems = (navigate: (path: string) => void): MenuItem[] => [
     {
@@ -15,15 +15,15 @@ export const getMenuItems = (navigate: (path: string) => void): MenuItem[] => [
         onItemClick: () => navigate('/projects'),
     },
     {
-        id: 'logs',
-        icon: Database,
-        title: 'Логи',
-        onItemClick: () => navigate('/logs'),
-    },
-    {
         id: 'errors',
-        icon: LogoStackOverflow,
+        icon: TriangleExclamation,
         title: 'Ошибки',
         onItemClick: () => navigate('/errors'),
+    },
+    {
+        id: 'logs',
+        icon: CircleExclamation,
+        title: 'Логи',
+        onItemClick: () => navigate('/logs'),
     },
 ];

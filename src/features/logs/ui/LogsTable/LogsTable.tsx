@@ -1,9 +1,9 @@
-import {Card, Table} from '@gravity-ui/uikit';
 import {DataFetchError} from '@/shared/ui/DataFetchError';
 import {DataLoader} from '@/shared/ui/DataLoader';
 import {Log} from '@/entities/log/model/types';
 import {getLogsTableColumns} from '@/features/logs/ui/LogsTable/lib/getLogsTableColumns';
 import {NavigateFunction} from 'react-router';
+import Table from '@/shared/ui/Table/Table';
 
 interface LogsTableProps {
     logs: Log[];
@@ -18,14 +18,10 @@ export const LogsTable = ({logs, loading, error, navigate, onRetry}: LogsTablePr
     if (error) return <DataFetchError errorMessage={error} onRetry={onRetry} />;
 
     return (
-        <Card view="raised" style={{marginBottom: 16}}>
-            <Table
-                data={logs}
-                columns={getLogsTableColumns(navigate)}
-                emptyMessage="Список логов пуст"
-                verticalAlign="middle"
-                wordWrap
-            />
-        </Card>
+        <Table
+            data={logs}
+            columns={getLogsTableColumns(navigate)}
+            emptyMessage="Список логов пуст"
+        />
     );
 };

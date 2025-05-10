@@ -1,5 +1,5 @@
 import {NavigateFunction} from 'react-router';
-import {Button, Text as GravityText, Icon, TableColumnConfig} from '@gravity-ui/uikit';
+import {Button, Text as GravityText, Icon, Link, TableColumnConfig} from '@gravity-ui/uikit';
 import {ArrowRight} from '@gravity-ui/icons';
 import {getErrorPath} from '@/app/url-generators';
 import {Err} from '@/entities/error/model/types';
@@ -13,31 +13,19 @@ export const getErrorsTableColumns = (navigate: NavigateFunction): TableColumnCo
     },
     {
         id: 'message',
-        name: 'Сообщение',
+        name: 'Ошибка',
         template: (err: Err) => (
-            <GravityText ellipsis title={err.message}>
-                {err.message}
-            </GravityText>
+            <>
+                <Link title={err.message} onClick={() => navigate(getErrorPath(err.id))} href={''}>
+                    {err.message}
+                </Link>
+                <br />
+                <GravityText color="secondary" ellipsis>
+                    <b>Строка</b>: {err.line}, <b>Файл</b>: {err.file}
+                </GravityText>
+            </>
         ),
         width: 300,
-    },
-    {
-        id: 'file',
-        name: 'Файл',
-        template: (err: Err) => (
-            <GravityText color="secondary" ellipsis>
-                {err.file}
-            </GravityText>
-        ),
-    },
-    {
-        id: 'line',
-        name: 'Строка',
-        template: (err: Err) => (
-            <GravityText color="secondary" ellipsis>
-                {err.line}
-            </GravityText>
-        ),
     },
     {
         id: 'context',

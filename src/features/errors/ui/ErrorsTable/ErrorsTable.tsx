@@ -1,9 +1,9 @@
-import {Card, Table} from '@gravity-ui/uikit';
 import {DataFetchError} from '@/shared/ui/DataFetchError';
 import {DataLoader} from '@/shared/ui/DataLoader';
 import {NavigateFunction} from 'react-router';
 import {Err} from '@/entities/error/model/types';
 import {getErrorsTableColumns} from '@/features/errors/ui/ErrorsTable/lib/getErrorsTableColumns';
+import Table from '@/shared/ui/Table/Table';
 
 interface ErrorsTableProps {
     errors: Err[];
@@ -18,14 +18,10 @@ export const ErrorsTable = ({errors, loading, error, navigate, onRetry}: ErrorsT
     if (error) return <DataFetchError errorMessage={error} onRetry={onRetry} />;
 
     return (
-        <Card view="raised" style={{marginBottom: 16}}>
-            <Table
-                data={errors}
-                columns={getErrorsTableColumns(navigate)}
-                emptyMessage="Список ошибок пуст"
-                verticalAlign="middle"
-                wordWrap
-            />
-        </Card>
+        <Table
+            data={errors}
+            columns={getErrorsTableColumns(navigate)}
+            emptyMessage="Список ошибок пуст"
+        />
     );
 };
