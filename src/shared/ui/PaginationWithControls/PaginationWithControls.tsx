@@ -24,7 +24,6 @@ export const PaginationWithControls = ({
         {value: '100', content: '100 на странице'},
     ],
 }: PaginationWithControlsProps) => {
-
     if (total === 0) return null;
 
     return (

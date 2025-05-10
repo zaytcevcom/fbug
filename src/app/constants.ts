@@ -1,2 +1,8 @@
-export const DARK = 'dark';
-export const LIGHT = 'light';
+export const THEMES = {
+    LIGHT: 'light',
+    DARK: 'dark',
+};
+
+export const LOCAL_STORAGE_KEYS = {
+    THEME: 'theme',
+};

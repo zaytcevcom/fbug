@@ -4,7 +4,7 @@ import {LogsFilters} from '@/features/logs/ui/LogsFilters/LogsFilters';
 import {LogsTable} from '@/features/logs/ui/LogsTable';
 import {PaginationWithControls} from '@/shared/ui/PaginationWithControls';
 import {useLogs} from '@/features/logs/hooks/useLogs';
-import {Card, Icon, Tab, TabList, Text as GravityText} from '@gravity-ui/uikit';
+import {Card, Text as GravityText, Icon, Tab, TabList} from '@gravity-ui/uikit';
 import {useEffect, useState} from 'react';
 import {ErrorsFilters} from '@/features/errors/ui/ErrorsFilters';
 import {ErrorsTable} from '@/features/errors/ui/ErrorsTable';
