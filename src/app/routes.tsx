@@ -9,6 +9,10 @@ import ProjectPage from '@/pages/ProjectPage/ProjectPage';
 export const routes: RouteObject[] = [
     {
         path: '/',
+        element: <ProjectsPage />,
+    },
+    {
+        path: '/dashboard',
         element: <DashboardPage />,
     },
     {
