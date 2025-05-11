@@ -6,6 +6,11 @@ import prism from 'vite-plugin-prismjs';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    base: '/',
+    publicDir: './public',
+    server: {
+        host: true,
+    },
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src'),
