@@ -92,4 +92,5 @@ jobs:
           HOST: ${{ vars.PRODUCTION_HOST }}
           PORT: ${{ vars.PRODUCTION_PORT }}
           PROJECT_NAME: ${{ vars.PROJECT_NAME }}
+          DOMAIN: ${{ vars.DOMAIN }}
           REACT_APP_API_BASE_URL: 'https://api.fuckbug.io/v1'
