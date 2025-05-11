@@ -1,5 +1,6 @@
 import {FC} from 'react';
 import {Card, Text as GravityText} from '@gravity-ui/uikit';
+import {formatNumber} from '@/shared/lib/format/formatNumber';
 
 interface ErrorGroupsStatsProps {
     title: string;
@@ -14,7 +15,7 @@ export const StatBlock: FC<ErrorGroupsStatsProps> = ({title, counter}) => {
                     <GravityText variant={'subheader-1'}>{title}</GravityText>
                 </div>
                 <GravityText variant={'display-3'} color={'info'}>
-                    {counter}
+                    {formatNumber(counter)}
                 </GravityText>
             </div>
         </Card>

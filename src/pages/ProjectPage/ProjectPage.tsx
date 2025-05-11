@@ -14,7 +14,7 @@ import ProjectTabs, {TabsState} from '@/features/projects/ui/ProjectTabs/Project
 import {ErrorGroupsFilters} from '@/features/errors/ui/ErrorGroupsFilters';
 import {ErrorGroupsTable} from '@/features/errors/ui/ErrorGroupsTable';
 import {useErrorGroups} from '@/features/errors/hooks/useErrorGroups';
-import {ErrorGroupsStats} from '@/features/errors/ui/ErrorGroupsStats';
+import {Stats} from '@/shared/ui/Stats';
 
 const ProjectPage = () => {
     const {projectId} = useParams();
@@ -56,8 +56,8 @@ const ProjectPage = () => {
         window.location.reload();
     };
 
-    if (!project || !dsn || loading) return <DataLoader />;
     if (error) return <DataFetchError errorMessage={error} onRetry={handleRetry} />;
+    if (!project || !dsn || loading) return <DataLoader />;
 
     return (
         <PageContainer>
@@ -74,7 +74,7 @@ const ProjectPage = () => {
 
             {activeTab === TabsState.ERRORS && (
                 <>
-                    <ErrorGroupsStats monthly={500} weekly={130} daily={43} />
+                    <Stats monthly={532400} weekly={24130} daily={243} />
 
                     <ErrorGroupsFilters
                         fields={errorsFilters}

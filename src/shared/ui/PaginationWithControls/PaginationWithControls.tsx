@@ -37,8 +37,8 @@ export const PaginationWithControls = ({
                 pageSize={pageSize}
                 total={total}
                 onUpdate={onPageChange}
-                compact={false}
-                showInput
+                compact={true}
+                showInput={false}
             />
 
             <Select

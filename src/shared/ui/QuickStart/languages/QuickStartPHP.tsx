@@ -31,18 +31,17 @@ const QuickStartPHP: React.FC<QuickStartPHPProps> = ({dsn}) => {
                 should initialize the Sentry PHP SDK as soon as possible.
             </GravityText>
 
-            <CodeBlock
-                code={`
-                FuckBug::init([
-                    Provider::setup(
-                        new FuckBugProvider(
-                            '${dsn}',
-                        )
-                    ),
-                ]);
-            `}
-                language={language}
-            />
+            <CodeBlock language={language}>
+                {`
+                    FuckBug::init([
+                        Provider::setup(
+                            new FuckBugProvider(
+                                '${dsn}',
+                            )
+                        ),
+                    ]);
+                `}
+            </CodeBlock>
 
             <br />
 
@@ -54,16 +53,15 @@ const QuickStartPHP: React.FC<QuickStartPHPProps> = ({dsn}) => {
                 captureLastError.
             </GravityText>
 
-            <CodeBlock
-                code={`
-                try {
-                    $this->functionFailsForSure();
-                } catch (\\Throwable $exception) {
-                    FuckBug::capture($exception);
-                }
-            `}
-                language={language}
-            />
+            <CodeBlock language={language}>
+                {`
+                    try {
+                        $this->functionFailsForSure();
+                    } catch (\\Throwable $exception) {
+                        FuckBug::capture($exception);
+                    }
+                `}
+            </CodeBlock>
         </>
     );
 };

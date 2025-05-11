@@ -1,26 +1,27 @@
 import {useEffect, useState} from 'react';
-import {Project} from '@/entities/project/model/types';
-import {fetchProjectById} from '@/entities/project/api/fetchProjectById';
-import {fetchProjectDsn} from '@/entities/project/api/fetchProjectDsn';
+import {ErrGroup} from '@/entities/error/model/types';
+import {fetchErrorGroupById} from '@/entities/error/api/fetchErrorGroupById';
 
-interface UseProjectProps {
-    id: string;
+interface UseErrorGroupProps {
+    id?: string | null;
 }
 
-export const useProject = ({id}: UseProjectProps) => {
-    const [project, setProject] = useState<Project | null>(null);
-    const [dsn, setDsn] = useState<string | null>(null);
+export const useErrorGroup = ({id}: UseErrorGroupProps) => {
+    const [group, setGroup] = useState<ErrGroup | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        if (!id) {
+            return;
+        }
+
         const fetchData = async () => {
             try {
                 setLoading(true);
                 setError(null);
 
-                setProject(await fetchProjectById({id: id}));
-                setDsn((await fetchProjectDsn({id: id})).dsn);
+                setGroup(await fetchErrorGroupById({id}));
             } catch (err) {
                 setError(err instanceof Error ? err.message : 'Unknown error');
             } finally {
@@ -32,8 +33,7 @@ export const useProject = ({id}: UseProjectProps) => {
     }, [id]);
 
     return {
-        project,
-        dsn,
+        group,
         loading,
         error,
     };

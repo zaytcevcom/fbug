@@ -2,12 +2,12 @@ import {Button, Text as GravityText, Icon} from '@gravity-ui/uikit';
 import {FC} from 'react';
 import {Plus} from '@gravity-ui/icons';
 
-interface DataFetchErrorProps {
+interface PageTitleProps {
     title: string;
     addHandle?: () => void;
 }
 
-export const PageTitle: FC<DataFetchErrorProps> = ({title, addHandle}) => {
+export const PageTitle: FC<PageTitleProps> = ({title, addHandle}) => {
     return (
         <div
             style={{

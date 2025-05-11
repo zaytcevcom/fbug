@@ -1,13 +1,13 @@
 import {FC} from 'react';
 import {StatBlock} from '@/shared/ui/StatBlock';
 
-interface ErrorGroupsStatsProps {
+interface StatsProps {
     monthly: number;
     weekly: number;
     daily: number;
 }
 
-export const ErrorGroupsStats: FC<ErrorGroupsStatsProps> = ({monthly, weekly, daily}) => {
+export const Stats: FC<StatsProps> = ({monthly, weekly, daily}) => {
     return (
         <div
             className={'g-container g-container_sr_3 g-s__px_5'}

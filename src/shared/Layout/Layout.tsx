@@ -22,7 +22,7 @@ export const Layout: FC<LayoutProps> = ({setTheme}) => {
         <AsideHeader
             logo={logo}
             compact={isCompact}
-            hideCollapseButton={true}
+            onChangeCompact={() => setCompact(!isCompact)}
             renderContent={() => (
                 <Wrapper setTheme={setTheme}>
                     <Outlet />
@@ -34,7 +34,6 @@ export const Layout: FC<LayoutProps> = ({setTheme}) => {
                     <Menu.Item
                         iconStart={<Icon size={16} data={Gear} />}
                         title={'Item with icon'}
-                        onClick={() => setCompact(!isCompact)}
                     />
                 </Menu>
             )}

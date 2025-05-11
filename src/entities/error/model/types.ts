@@ -3,6 +3,7 @@ export interface Err {
     message: string;
     file: string;
     line: number;
+    stacktrace: string;
     context: string;
     time: number;
 }

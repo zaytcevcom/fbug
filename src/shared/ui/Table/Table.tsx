@@ -5,10 +5,11 @@ type TableProps<I> = {
     data: I[];
     columns: TableColumnConfig<I>[];
     emptyMessage: string;
+    onRowClick?: (item: I, index: number, event: React.MouseEvent<HTMLTableRowElement>) => void;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Table: React.FC<TableProps<any>> = ({data, columns, emptyMessage}) => {
+const Table: React.FC<TableProps<any>> = ({data, columns, emptyMessage, onRowClick}) => {
     return (
         <Card view="raised" style={{marginBottom: 16}}>
             <GravityTable
@@ -18,6 +19,7 @@ const Table: React.FC<TableProps<any>> = ({data, columns, emptyMessage}) => {
                 verticalAlign="middle"
                 wordWrap
                 width={'max'}
+                onRowClick={onRowClick}
             />
         </Card>
     );

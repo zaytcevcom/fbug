@@ -1,25 +1,25 @@
-import React, {useEffect, useRef} from 'react';
+import React, {ReactNode, useEffect, useRef} from 'react';
 import Prism from 'prismjs';
 import dedent from 'dedent';
 
 type CodeBlockProps = {
-    code: string;
+    children?: ReactNode;
     language?: string;
 };
 
-const CodeBlock: React.FC<CodeBlockProps> = ({code, language = 'javascript'}) => {
+const CodeBlock: React.FC<CodeBlockProps> = ({children, language = 'javascript'}) => {
     const ref = useRef<HTMLElement>(null);
 
     useEffect(() => {
         if (ref.current) {
             Prism.highlightElement(ref.current);
         }
-    }, [code]);
+    }, [children]);
 
     return (
         <pre>
             <code ref={ref} className={`language-${language}`}>
-                {dedent(code)}
+                {typeof children === 'string' ? dedent(children) : children}
             </code>
         </pre>
     );
