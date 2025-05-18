@@ -58,4 +58,41 @@ const formatDateTime = (date: number) => {
     return formatDateTimeMilliseconds(date * 1000);
 };
 
-export {formatDateTime, formatDateMilliseconds, formatDateTimeMilliseconds};
+const unixToHumanReadable = (unixTimestamp: number): string => {
+    const date = new Date(unixTimestamp * 1000);
+    const now = new Date();
+
+    const formatTime = (d: Date): string => {
+        const hours = d.getHours().toString().padStart(2, '0');
+        const minutes = d.getMinutes().toString().padStart(2, '0');
+        return `${hours}:${minutes}`;
+    };
+
+    const today = new Date(now);
+    today.setHours(0, 0, 0, 0);
+
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    const inputDate = new Date(date);
+    inputDate.setHours(0, 0, 0, 0);
+
+    const diffMs = now.getTime() - date.getTime();
+    const diffMinutes = Math.floor(diffMs / (1000 * 60));
+
+    if (inputDate.getTime() === today.getTime()) {
+        if (diffMinutes < 1) {
+            return 'только что';
+        } else if (diffMinutes < 60) {
+            return `${diffMinutes} мин. назад`;
+        } else {
+            return `сегодня в ${formatTime(date)}`;
+        }
+    } else if (inputDate.getTime() === yesterday.getTime()) {
+        return `вчера в ${formatTime(date)}`;
+    } else {
+        return formatDateTime(unixTimestamp);
+    }
+};
+
+export {unixToHumanReadable, formatDateTime, formatDateMilliseconds, formatDateTimeMilliseconds};

@@ -5,6 +5,7 @@ import {DashboardPage} from '@/pages/DashboardPage/DashboardPage';
 import {NotFoundPage} from '@/pages/NotFoundPage';
 import ErrorGroupPage from '@/pages/ErrorGroupPage/ErrorGroupPage';
 import ProjectPage from '@/pages/ProjectPage/ProjectPage';
+import LogGroupPage from '@/pages/LogGroupPage/LogGroupPage';
 
 export const routes: RouteObject[] = [
     {
@@ -26,6 +27,10 @@ export const routes: RouteObject[] = [
     {
         path: '/projects/:projectId/error-groups/:groupId',
         element: <ErrorGroupPage />,
+    },
+    {
+        path: '/projects/:projectId/log-groups/:groupId',
+        element: <LogGroupPage />,
     },
     {
         path: '/logs',

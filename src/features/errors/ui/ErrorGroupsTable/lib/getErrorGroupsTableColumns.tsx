@@ -3,7 +3,7 @@ import {Text as GravityText, Icon, Label, Link, TableColumnConfig} from '@gravit
 import {getErrorGroupPath} from '@/app/url-generators';
 import {ErrGroup} from '@/entities/error/model/types';
 import {formatNumber} from '@/shared/lib/format/formatNumber';
-import {formatDateTime} from '@/shared/lib/format/formatDateMilliseconds';
+import {unixToHumanReadable} from '@/shared/lib/format/formatDateMilliseconds';
 import {Clock, ClockArrowRotateLeft} from '@gravity-ui/icons';
 
 export const getErrorGroupsTableColumns = (
@@ -25,8 +25,13 @@ export const getErrorGroupsTableColumns = (
                 <br />
                 <GravityText color="secondary">
                     <b>Строка</b>: {group.line}, <b>Файл</b>: {group.file}, <Icon data={Clock} />{' '}
-                    {formatDateTime(group.firstSeenAt)}, <Icon data={ClockArrowRotateLeft} />{' '}
-                    {formatDateTime(group.lastSeenAt)}
+                    {unixToHumanReadable(group.firstSeenAt)}
+                    {group.firstSeenAt !== group.lastSeenAt && (
+                        <>
+                            , <Icon data={ClockArrowRotateLeft} />{' '}
+                            {unixToHumanReadable(group.lastSeenAt)}
+                        </>
+                    )}
                 </GravityText>
             </>
         ),
@@ -39,6 +44,6 @@ export const getErrorGroupsTableColumns = (
                 {formatNumber(group.counter)}
             </Label>
         ),
-        align: 'right',
+        align: 'end',
     },
 ];

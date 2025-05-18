@@ -1,5 +1,5 @@
 import {Icon, Tab, TabList} from '@gravity-ui/uikit';
-import {FileText, LayoutList, ListUl, LogoStackOverflow} from '@gravity-ui/icons';
+import {BroadcastSignal, FileText, LayoutList, SquareDashed} from '@gravity-ui/icons';
 import React from 'react';
 import {Err} from '@/entities/error/model/types';
 
@@ -34,13 +34,16 @@ const ErrorGroupTabs: React.FC<ErrorGroupTabsProps> = ({activeTab, setActiveTab,
         >
             <Tab
                 value={ErrorGroupTabsState.STACK_TRACE.toString()}
-                icon={<Icon data={LogoStackOverflow} />}
+                icon={<Icon data={BroadcastSignal} />}
             >
                 Stack trace
             </Tab>
 
             {err.context && (
-                <Tab value={ErrorGroupTabsState.CONTEXT.toString()} icon={<Icon data={ListUl} />}>
+                <Tab
+                    value={ErrorGroupTabsState.CONTEXT.toString()}
+                    icon={<Icon data={SquareDashed} />}
+                >
                     Context
                 </Tab>
             )}

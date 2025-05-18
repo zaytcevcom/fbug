@@ -4,11 +4,17 @@ import {Log} from '@/entities/log/model/types';
 
 interface UseLogsProps {
     projectId?: string;
+    groupId?: string;
     initialPage?: number;
     initialPageSize?: number;
 }
 
-export const useLogs = ({projectId, initialPage = 1, initialPageSize = 50}: UseLogsProps) => {
+export const useLogs = ({
+    projectId,
+    groupId,
+    initialPage = 1,
+    initialPageSize = 50,
+}: UseLogsProps) => {
     const [logs, setLogs] = useState<Log[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -27,7 +33,7 @@ export const useLogs = ({projectId, initialPage = 1, initialPageSize = 50}: UseL
             setLoading(true);
             setError(null);
 
-            const data = await fetchLogs({projectId, page, pageSize, filters});
+            const data = await fetchLogs({projectId, groupId, page, pageSize, filters});
 
             setLogs(data.items);
             setTotal(data.count);

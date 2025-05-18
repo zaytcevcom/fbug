@@ -1,63 +1,18 @@
-import {NavigateFunction} from 'react-router';
 import {Log} from '@/entities/log/model/types';
-import {Button, Text as GravityText, Icon, Label, TableColumnConfig} from '@gravity-ui/uikit';
-import {ArrowRight} from '@gravity-ui/icons';
-import {getLogPath} from '@/app/url-generators';
+import {Text as GravityText, Label, TableColumnConfig} from '@gravity-ui/uikit';
 import {formatDateTimeMilliseconds} from '@/shared/lib/format/formatDateMilliseconds';
 
-export const getLogsTableColumns = (navigate: NavigateFunction): TableColumnConfig<Log>[] => [
-    {
-        id: 'time',
-        name: 'Время',
-        template: (log: Log) => <GravityText>{formatDateTimeMilliseconds(log.time)}</GravityText>,
-        width: 180,
-    },
-    {
-        id: 'level',
-        name: 'Уровень',
-        template: (log: Log) => {
-            const colors = {
-                DEBUG: 'utility',
-                INFO: 'info',
-                WARN: 'warning',
-                ERROR: 'danger',
-            } as const;
-
-            return (
-                <Label theme={colors[log.level]} size="m">
-                    {log.level}
-                </Label>
-            );
-        },
-        width: 120,
-    },
+export const getLogsTableColumns = (): TableColumnConfig<Log>[] => [
     {
         id: 'message',
-        name: 'Сообщение',
+        name: 'События',
         template: (log: Log) => (
-            <GravityText ellipsis title={log.message}>
-                {log.message}
-            </GravityText>
+            <>
+                <GravityText>
+                    <Label theme={'info'}>{formatDateTimeMilliseconds(log.time)}</Label>
+                    <GravityText style={{marginLeft: '4px'}}>{log.message}</GravityText>
+                </GravityText>
+            </>
         ),
-        width: 300,
-    },
-    {
-        id: 'context',
-        name: 'Контекст',
-        template: (log: Log) => (
-            <GravityText color="secondary" ellipsis>
-                {log.context}
-            </GravityText>
-        ),
-    },
-    {
-        id: 'actions',
-        name: 'Действия',
-        template: (log: Log) => (
-            <Button view="flat" size="s" onClick={() => navigate(getLogPath(log.id))}>
-                Подробнее <Icon data={ArrowRight} size={14} />
-            </Button>
-        ),
-        width: 120,
     },
 ];

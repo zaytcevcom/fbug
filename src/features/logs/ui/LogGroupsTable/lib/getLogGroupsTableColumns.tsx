@@ -4,7 +4,7 @@ import {getLogGroupPath} from '@/app/url-generators';
 import {LogGroup} from '@/entities/log/model/types';
 import {formatNumber} from '@/shared/lib/format/formatNumber';
 import {Clock, ClockArrowRotateLeft} from '@gravity-ui/icons';
-import {formatDateTime} from '@/shared/lib/format/formatDateMilliseconds';
+import {unixToHumanReadable} from '@/shared/lib/format/formatDateMilliseconds';
 
 export const getLogGroupsTableColumns = (
     projectId: string,
@@ -45,8 +45,13 @@ export const getLogGroupsTableColumns = (
                     </Link>
                     <br />
                     <GravityText color="secondary">
-                        <Icon data={Clock} /> {formatDateTime(group.firstSeenAt)},{' '}
-                        <Icon data={ClockArrowRotateLeft} /> {formatDateTime(group.lastSeenAt)}
+                        <Icon data={Clock} /> {unixToHumanReadable(group.firstSeenAt)}
+                        {group.firstSeenAt !== group.lastSeenAt && (
+                            <>
+                                , <Icon data={ClockArrowRotateLeft} />{' '}
+                                {unixToHumanReadable(group.lastSeenAt)}
+                            </>
+                        )}
                     </GravityText>
                 </>
             );
@@ -60,6 +65,6 @@ export const getLogGroupsTableColumns = (
                 {formatNumber(group.counter)}
             </Label>
         ),
-        align: 'right',
+        align: 'end',
     },
 ];

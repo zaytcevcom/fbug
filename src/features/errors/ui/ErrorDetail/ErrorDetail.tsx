@@ -66,37 +66,49 @@ export const ErrorDetail = ({id}: ErrorDetailProps) => {
                         {err.ip}
                     </div>
 
-                    <div style={{marginTop: '16px'}}>
-                        <GravityText variant={'header-1'}>Headers</GravityText>
-                        <CodeBlock language={'json'}>{err.headers}</CodeBlock>
-                    </div>
+                    {err.headers && (
+                        <div style={{marginTop: '16px'}}>
+                            <GravityText variant={'header-1'}>Headers</GravityText>
+                            <CodeBlock language={'json'}>{err.headers}</CodeBlock>
+                        </div>
+                    )}
 
-                    <div style={{marginTop: '16px'}}>
-                        <GravityText variant={'header-1'}>Query Params</GravityText>
-                        <CodeBlock language={'json'}>{err.queryParams}</CodeBlock>
-                    </div>
+                    {err.queryParams && (
+                        <div style={{marginTop: '16px'}}>
+                            <GravityText variant={'header-1'}>Query Params</GravityText>
+                            <CodeBlock language={'json'}>{err.queryParams}</CodeBlock>
+                        </div>
+                    )}
 
-                    <div style={{marginTop: '16px'}}>
-                        <GravityText variant={'header-1'} style={{marginTop: '16px'}}>
-                            Body Params
-                        </GravityText>
-                        <CodeBlock language={'json'}>{err.bodyParams}</CodeBlock>
-                    </div>
+                    {err.bodyParams && (
+                        <div style={{marginTop: '16px'}}>
+                            <GravityText variant={'header-1'} style={{marginTop: '16px'}}>
+                                Body Params
+                            </GravityText>
+                            <CodeBlock language={'json'}>{err.bodyParams}</CodeBlock>
+                        </div>
+                    )}
 
-                    <div style={{marginTop: '16px'}}>
-                        <GravityText variant={'header-1'}>Cookies</GravityText>
-                        <CodeBlock language={'json'}>{err.cookies}</CodeBlock>
-                    </div>
+                    {err.cookies && (
+                        <div style={{marginTop: '16px'}}>
+                            <GravityText variant={'header-1'}>Cookies</GravityText>
+                            <CodeBlock language={'json'}>{err.cookies}</CodeBlock>
+                        </div>
+                    )}
 
-                    <div style={{marginTop: '16px'}}>
-                        <GravityText variant={'header-1'}>Session</GravityText>
-                        <CodeBlock language={'json'}>{err.session}</CodeBlock>
-                    </div>
+                    {err.session && (
+                        <div style={{marginTop: '16px'}}>
+                            <GravityText variant={'header-1'}>Session</GravityText>
+                            <CodeBlock language={'json'}>{err.session}</CodeBlock>
+                        </div>
+                    )}
 
-                    <div style={{marginTop: '16px'}}>
-                        <GravityText variant={'header-1'}>Files</GravityText>
-                        <CodeBlock language={'json'}>{err.files}</CodeBlock>
-                    </div>
+                    {err.files && (
+                        <div style={{marginTop: '16px'}}>
+                            <GravityText variant={'header-1'}>Files</GravityText>
+                            <CodeBlock language={'json'}>{err.files}</CodeBlock>
+                        </div>
+                    )}
                 </>
             )}
 

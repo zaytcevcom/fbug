@@ -8,6 +8,7 @@ interface LogsResponse {
 
 interface FetchLogsParams {
     projectId?: string;
+    groupId?: string;
     page: number;
     pageSize: number;
     filters: {
@@ -20,6 +21,7 @@ interface FetchLogsParams {
 
 export const fetchLogs = async ({
     projectId,
+    groupId,
     page,
     pageSize,
     filters,
@@ -29,6 +31,7 @@ export const fetchLogs = async ({
         limit: pageSize.toString(),
         offset: ((page - 1) * pageSize).toString(),
         ...(projectId && {projectId}),
+        ...(groupId && {groupId}),
         ...(filters.level && {level: filters.level}),
         ...(filters.search && {search: filters.search}),
         ...(filters.timeFrom && {timeFrom: filters.timeFrom.toString()}),
