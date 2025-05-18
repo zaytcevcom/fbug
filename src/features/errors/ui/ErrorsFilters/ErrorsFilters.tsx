@@ -18,7 +18,7 @@ interface ErrorsFiltersProps {
 
 export const ErrorsFilters: FC<ErrorsFiltersProps> = ({fields, onFilterChange, onResetFilters}) => {
     return (
-        <Card style={{marginBottom: '24px', padding: '16px'}}>
+        <Card style={{marginBottom: '16px', padding: '16px'}}>
             <div style={{display: 'flex', gap: '16px', flexWrap: 'wrap'}}>
                 <div style={{flex: '1', minWidth: '200px'}}>
                     <TextInput

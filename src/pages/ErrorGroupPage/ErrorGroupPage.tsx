@@ -10,6 +10,7 @@ import {useEffect, useState} from 'react';
 import {StatBlock} from '@/shared/ui/StatBlock';
 import {Divider} from '@gravity-ui/uikit';
 import {ErrorGroupDetail} from '@/features/errors/ui/ErrorGroupDetail';
+import {useErrorsStats} from '@/features/errors/hooks/useErrorsStats';
 
 const ErrorGroupPage = () => {
     const {projectId, groupId} = useParams();
@@ -40,6 +41,8 @@ const ErrorGroupPage = () => {
         setErrorId(err.id);
     };
 
+    const {stats} = useErrorsStats({projectId, groupId});
+
     return (
         <PageContainer>
             <div className="g-row g-row_s_5">
@@ -51,9 +54,28 @@ const ErrorGroupPage = () => {
                     <ErrorDetail id={errorId} />
                 </div>
                 <div className="g-col g-col_size_4">
-                    <StatBlock title={'Последние 24 ч'} counter={343} />
-                    <StatBlock title={'Последние 7 дней'} counter={23} />
-                    <StatBlock title={'Последние 30 дней'} counter={2} />
+                    {stats && (
+                        <>
+                            <div
+                                className="g-row g-row_sr_3"
+                                style={{
+                                    marginBottom: '16px',
+                                    gap: '16px',
+                                    justifyContent: 'space-between',
+                                }}
+                            >
+                                <div className="g-col">
+                                    <StatBlock title={'24 ч'} counter={stats.last24h} />
+                                </div>
+                                <div className="g-col">
+                                    <StatBlock title={'7 дней'} counter={stats.last7d} />
+                                </div>
+                                <div className="g-col">
+                                    <StatBlock title={'30 дней'} counter={stats.last30d} />
+                                </div>
+                            </div>
+                        </>
+                    )}
 
                     <ErrorsFilters
                         fields={filters}

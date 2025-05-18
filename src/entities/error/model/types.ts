@@ -5,6 +5,16 @@ export interface Err {
     line: number;
     stacktrace: string;
     context: string;
+    ip?: string;
+    url?: string;
+    method?: string;
+    headers?: string;
+    queryParams?: string;
+    bodyParams?: string;
+    cookies?: string;
+    session?: string;
+    files?: string;
+    env?: string;
     time: number;
 }
 

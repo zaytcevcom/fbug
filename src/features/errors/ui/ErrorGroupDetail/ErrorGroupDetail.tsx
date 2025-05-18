@@ -2,7 +2,7 @@ import {DataFetchError} from '@/shared/ui/DataFetchError';
 import {DataLoader} from '@/shared/ui/DataLoader';
 import {Text as GravityText, Label} from '@gravity-ui/uikit';
 import {useErrorGroup} from '@/features/errors/hooks/useErrorGroup';
-import {formatDateTime} from '@/shared/lib/format/formatDate';
+import {formatDateTime} from '@/shared/lib/format/formatDateMilliseconds';
 
 interface ErrorGroupDetailProps {
     id?: string;
@@ -27,11 +27,11 @@ export const ErrorGroupDetail = ({id}: ErrorGroupDetailProps) => {
                 </Label>
             </div>
             <GravityText>
-                <b>Обнаружено</b>: {formatDateTime(group.firstSeenAt * 1000)}
+                <b>Обнаружено</b>: {formatDateTime(group.firstSeenAt)}
             </GravityText>
             <br />
             <GravityText>
-                <b>Последний раз</b>: {formatDateTime(group.lastSeenAt * 1000)}
+                <b>Последний раз</b>: {formatDateTime(group.lastSeenAt)}
             </GravityText>
         </>
     );

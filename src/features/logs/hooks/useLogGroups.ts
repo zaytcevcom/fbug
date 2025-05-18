@@ -1,25 +1,26 @@
 import {useCallback, useEffect, useState} from 'react';
-import {ErrGroup} from '@/entities/error/model/types';
-import {fetchErrorGroups} from '@/entities/error/api/fetchErrorGroups';
+import {LogGroup} from '@/entities/log/model/types';
+import {fetchLogGroups} from '@/entities/log/api/fetchLogGroups';
 
-interface UseErrorGroupsProps {
+interface UseLogGroupsProps {
     projectId?: string;
     initialPage?: number;
     initialPageSize?: number;
 }
 
-export const useErrorGroups = ({
+export const useLogGroups = ({
     projectId,
     initialPage = 1,
     initialPageSize = 50,
-}: UseErrorGroupsProps) => {
-    const [errorGroups, setErrorGroups] = useState<ErrGroup[]>([]);
+}: UseLogGroupsProps) => {
+    const [logGroups, setLogGroups] = useState<LogGroup[]>([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const [error, setLog] = useState<string | null>(null);
     const [total, setTotal] = useState(0);
     const [page, setPage] = useState(initialPage);
     const [pageSize, setPageSize] = useState(initialPageSize);
     const [filters, setFilters] = useState({
+        level: '',
         search: '',
         timeFrom: null,
         timeTo: null,
@@ -28,14 +29,14 @@ export const useErrorGroups = ({
     const handleLoad = useCallback(async () => {
         try {
             setLoading(true);
-            setError(null);
+            setLog(null);
 
-            const data = await fetchErrorGroups({projectId, page, pageSize, filters});
+            const data = await fetchLogGroups({projectId, page, pageSize, filters});
 
-            setErrorGroups(data.items);
+            setLogGroups(data.items);
             setTotal(data.count);
         } catch (err) {
-            setError(err instanceof Error ? err.message : 'Unknown error');
+            setLog(err instanceof Error ? err.message : 'Unknown error');
         } finally {
             setLoading(false);
         }
@@ -52,6 +53,7 @@ export const useErrorGroups = ({
 
     const handleResetFilters = useCallback(() => {
         setFilters({
+            level: '',
             search: '',
             timeFrom: null,
             timeTo: null,
@@ -59,7 +61,7 @@ export const useErrorGroups = ({
     }, []);
 
     return {
-        errorGroups,
+        logGroups,
         loading,
         error,
         total,

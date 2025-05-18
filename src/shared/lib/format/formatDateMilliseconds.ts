@@ -2,7 +2,7 @@ type DateFormatOptions = Intl.DateTimeFormatOptions & {
     showTime?: boolean;
 };
 
-const formatDate = (function () {
+const formatDateMilliseconds = (function () {
     return function (
         date: string | number | Date,
         locale = 'ru-RU',
@@ -38,7 +38,7 @@ const formatDate = (function () {
     };
 })();
 
-const formatDateTime = (function () {
+const formatDateTimeMilliseconds = (function () {
     return function (
         date: string | number | Date,
         locale = 'ru-RU',
@@ -50,8 +50,12 @@ const formatDateTime = (function () {
             minute: '2-digit',
         },
     ) {
-        return formatDate(date, locale, {...options, showTime: true});
+        return formatDateMilliseconds(date, locale, {...options, showTime: true});
     };
 })();
 
-export {formatDate, formatDateTime};
+const formatDateTime = (date: number) => {
+    return formatDateTimeMilliseconds(date * 1000);
+};
+
+export {formatDateTime, formatDateMilliseconds, formatDateTimeMilliseconds};

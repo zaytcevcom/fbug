@@ -1,6 +1,7 @@
 import {Icon, Tab, TabList} from '@gravity-ui/uikit';
 import {BookOpen, CircleExclamation, TriangleExclamation} from '@gravity-ui/icons';
-import React, {useEffect} from 'react';
+import React from 'react';
+import {formatNumber} from '@/shared/lib/format/formatNumber';
 
 export enum TabsState {
     QUICK_START = 'quickStart',
@@ -24,12 +25,6 @@ const ProjectTabs: React.FC<TabsProps> = ({activeTab, setActiveTab, errorsTotal,
         }
     };
 
-    useEffect(() => {
-        if (errorsTotal !== 0 || logsTotal !== 0) {
-            setActiveTab(TabsState.ERRORS);
-        }
-    }, [errorsTotal, logsTotal]);
-
     return (
         <TabList
             style={{marginBottom: '16px'}}
@@ -43,14 +38,14 @@ const ProjectTabs: React.FC<TabsProps> = ({activeTab, setActiveTab, errorsTotal,
             <Tab
                 value={TabsState.ERRORS.toString()}
                 icon={<Icon data={TriangleExclamation} />}
-                counter={errorsTotal}
+                counter={formatNumber(errorsTotal)}
             >
                 Ошибки
             </Tab>
             <Tab
                 value={TabsState.LOGS.toString()}
                 icon={<Icon data={CircleExclamation} />}
-                counter={logsTotal}
+                counter={formatNumber(logsTotal)}
             >
                 Логи
             </Tab>

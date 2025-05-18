@@ -3,13 +3,13 @@ import {Log} from '@/entities/log/model/types';
 import {Button, Text as GravityText, Icon, Label, TableColumnConfig} from '@gravity-ui/uikit';
 import {ArrowRight} from '@gravity-ui/icons';
 import {getLogPath} from '@/app/url-generators';
-import {formatDateTime} from '@/shared/lib/format/formatDate';
+import {formatDateTimeMilliseconds} from '@/shared/lib/format/formatDateMilliseconds';
 
 export const getLogsTableColumns = (navigate: NavigateFunction): TableColumnConfig<Log>[] => [
     {
         id: 'time',
         name: 'Время',
-        template: (log: Log) => <GravityText>{formatDateTime(log.time)}</GravityText>,
+        template: (log: Log) => <GravityText>{formatDateTimeMilliseconds(log.time)}</GravityText>,
         width: 180,
     },
     {
