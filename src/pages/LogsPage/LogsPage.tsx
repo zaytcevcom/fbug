@@ -1,4 +1,4 @@
-import {useNavigate, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import {PageTitle} from '@/shared/ui/PageTitle';
 import {PageContainer} from '@/shared/ui/PageContainer';
 import {LogsFilters} from '@/features/logs/ui/LogsFilters/LogsFilters';
@@ -8,7 +8,6 @@ import {useLogs} from '@/features/logs/hooks/useLogs';
 
 const LogsPage = () => {
     const {projectId} = useParams();
-    const navigate = useNavigate();
     const {
         logs,
         loading,
@@ -32,13 +31,7 @@ const LogsPage = () => {
                 onFilterChange={handleFilterChange}
                 onResetFilters={handleResetFilters}
             />
-            <LogsTable
-                logs={logs}
-                loading={loading}
-                error={error}
-                navigate={navigate}
-                onRetry={handleLoad}
-            />
+            <LogsTable logs={logs} loading={loading} error={error} onRetry={handleLoad} />
             <PaginationWithControls
                 page={page}
                 pageSize={pageSize}
