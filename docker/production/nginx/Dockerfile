@@ -1,4 +1,4 @@
-FROM node:23 as builder
+FROM node:23 AS builder
 
 ENV REACT_APP_API_BASE_URL=__REACT_APP_API_BASE_URL__
 
