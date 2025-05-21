@@ -16,6 +16,13 @@ const CodeBlock: React.FC<CodeBlockProps> = ({children, language = 'javascript'}
         }
     }, [children]);
 
+    if (language === 'json') {
+        try {
+            const jsonObj = JSON.parse(String(children));
+            children = JSON.stringify(jsonObj, null, 2);
+        } catch (e) {}
+    }
+
     return (
         <pre>
             <code ref={ref} className={`language-${language}`}>

@@ -3,12 +3,13 @@ import {DataLoader} from '@/shared/ui/DataLoader';
 import StackTrace from '@/shared/ui/StackTrace/StackTrace';
 import {useError} from '@/features/errors/hooks/useError';
 import {formatDateTimeMilliseconds} from '@/shared/lib/format/formatDateMilliseconds';
-import {Text as GravityText, Label} from '@gravity-ui/uikit';
-import CodeBlock from '@/shared/ui/CodeBlock/CodeBlock';
+import {Card, Text as GravityText, Label} from '@gravity-ui/uikit';
 import ErrorGroupTabs, {
     ErrorGroupTabsState,
 } from '@/features/errors/ui/ErrorGroupTabs/ErrorGroupTabs';
 import {useState} from 'react';
+import JsonToTable from '@/shared/ui/JsonToTable/JsonToTable';
+import CodeBlock from '@/shared/ui/CodeBlock/CodeBlock';
 
 interface ErrorDetailProps {
     id?: string;
@@ -43,78 +44,76 @@ export const ErrorDetail = ({id}: ErrorDetailProps) => {
             )}
 
             {activeTab === ErrorGroupTabsState.CONTEXT && (
-                <CodeBlock language={'json'}>{err.context}</CodeBlock>
+                <CodeBlock language={'json'}>{JSON.stringify(err.context)}</CodeBlock>
             )}
 
             {activeTab === ErrorGroupTabsState.REQUEST && (
                 <>
-                    <div style={{marginTop: '16px'}}>
+                    <Card style={{marginTop: '16px', padding: '16px', overflow: 'auto'}}>
                         <GravityText variant={'body-3'}>URL</GravityText>
                         <br />
                         {err.url}
-                    </div>
+                    </Card>
 
-                    <div style={{marginTop: '16px'}}>
+                    <Card style={{marginTop: '16px', padding: '16px', overflow: 'auto'}}>
                         <GravityText variant={'body-3'}>Method</GravityText>
                         <br />
                         {err.method}
-                    </div>
+                    </Card>
 
-                    <div style={{marginTop: '16px'}}>
+                    <Card style={{marginTop: '16px', padding: '16px', overflow: 'auto'}}>
                         <GravityText variant={'body-3'}>IP</GravityText>
                         <br />
                         {err.ip}
-                    </div>
+                    </Card>
 
                     {err.headers && (
-                        <div style={{marginTop: '16px'}}>
+                        <Card style={{marginTop: '16px', padding: '16px', overflow: 'auto'}}>
                             <GravityText variant={'header-1'}>Headers</GravityText>
-                            <CodeBlock language={'json'}>{err.headers}</CodeBlock>
-                        </div>
+                            <JsonToTable data={err.headers} />
+                        </Card>
                     )}
 
                     {err.queryParams && (
-                        <div style={{marginTop: '16px'}}>
+                        <Card style={{marginTop: '16px', padding: '16px', overflow: 'auto'}}>
                             <GravityText variant={'header-1'}>Query Params</GravityText>
-                            <CodeBlock language={'json'}>{err.queryParams}</CodeBlock>
-                        </div>
+                            <JsonToTable data={err.queryParams} />
+                        </Card>
                     )}
 
                     {err.bodyParams && (
-                        <div style={{marginTop: '16px'}}>
+                        <Card style={{marginTop: '16px', padding: '16px', overflow: 'auto'}}>
                             <GravityText variant={'header-1'} style={{marginTop: '16px'}}>
                                 Body Params
                             </GravityText>
-                            <CodeBlock language={'json'}>{err.bodyParams}</CodeBlock>
-                        </div>
+                            <JsonToTable data={err.bodyParams} />
+                        </Card>
                     )}
 
                     {err.cookies && (
-                        <div style={{marginTop: '16px'}}>
+                        <Card style={{marginTop: '16px', padding: '16px', overflow: 'auto'}}>
                             <GravityText variant={'header-1'}>Cookies</GravityText>
-                            <CodeBlock language={'json'}>{err.cookies}</CodeBlock>
-                        </div>
+                            <JsonToTable data={err.cookies} />
+                        </Card>
                     )}
 
                     {err.session && (
-                        <div style={{marginTop: '16px'}}>
+                        <Card style={{marginTop: '16px', padding: '16px', overflow: 'auto'}}>
                             <GravityText variant={'header-1'}>Session</GravityText>
-                            <CodeBlock language={'json'}>{err.session}</CodeBlock>
-                        </div>
+                            <JsonToTable data={err.session} />
+                        </Card>
                     )}
 
                     {err.files && (
-                        <div style={{marginTop: '16px'}}>
+                        <Card style={{marginTop: '16px', padding: '16px', overflow: 'auto'}}>
                             <GravityText variant={'header-1'}>Files</GravityText>
-                            <CodeBlock language={'json'}>{err.files}</CodeBlock>
-                        </div>
+                            <JsonToTable data={err.files} />
+                        </Card>
                     )}
                 </>
             )}
 
-            {activeTab === ErrorGroupTabsState.ENV && (
-                <CodeBlock language={'json'}>{err.env}</CodeBlock>
-            )}
+            {activeTab === ErrorGroupTabsState.ENV && err.env && <JsonToTable data={err.env} />}
         </>
     );
 };

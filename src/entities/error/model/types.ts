@@ -4,17 +4,17 @@ export interface Err {
     file: string;
     line: number;
     stacktrace: string;
-    context: string;
+    context?: Record<string, unknown> | Array<unknown>;
     ip?: string;
     url?: string;
     method?: string;
-    headers?: string;
-    queryParams?: string;
-    bodyParams?: string;
-    cookies?: string;
-    session?: string;
-    files?: string;
-    env?: string;
+    headers?: Record<string, unknown>;
+    queryParams?: Record<string, unknown>;
+    bodyParams?: Record<string, unknown>;
+    cookies?: Record<string, unknown>;
+    session?: Record<string, unknown>;
+    files?: Record<string, unknown>;
+    env?: Record<string, unknown>;
     time: number;
 }
 
