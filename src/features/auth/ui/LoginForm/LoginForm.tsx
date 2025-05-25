@@ -1,11 +1,12 @@
 import {useForm} from 'react-hook-form';
 import {Box, Button, Flex, Text as GravityText, TextInput} from '@gravity-ui/uikit';
-import {useUnit} from 'effector-react';
-import {loginFormSubmitted} from '../../model/authModel';
 import type {LoginCredentials} from '../../types';
 
-export const LoginForm = () => {
-    const login = useUnit(loginFormSubmitted);
+type LoginFormProps = {
+    onSubmit: (payload: LoginCredentials) => void;
+};
+
+export const LoginForm = ({onSubmit}: LoginFormProps) => {
     const {
         register,
         handleSubmit,
@@ -16,10 +17,6 @@ export const LoginForm = () => {
             password: '',
         },
     });
-
-    const onSubmit = (data: LoginCredentials) => {
-        login(data);
-    };
 
     return (
         <Box maxWidth="400px">
