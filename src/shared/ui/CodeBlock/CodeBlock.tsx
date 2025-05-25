@@ -9,6 +9,7 @@ type CodeBlockProps = {
 
 const CodeBlock: React.FC<CodeBlockProps> = ({children, language = 'javascript'}) => {
     const ref = useRef<HTMLElement>(null);
+    let processedChildren = children;
 
     useEffect(() => {
         if (ref.current) {
@@ -19,14 +20,16 @@ const CodeBlock: React.FC<CodeBlockProps> = ({children, language = 'javascript'}
     if (language === 'json') {
         try {
             const jsonObj = JSON.parse(String(children));
-            children = JSON.stringify(jsonObj, null, 2);
+            processedChildren = JSON.stringify(jsonObj, null, 2);
         } catch (e) {}
     }
 
     return (
         <pre>
             <code ref={ref} className={`language-${language}`}>
-                {typeof children === 'string' ? dedent(children) : children}
+                {typeof processedChildren === 'string'
+                    ? dedent(processedChildren)
+                    : processedChildren}
             </code>
         </pre>
     );

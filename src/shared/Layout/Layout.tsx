@@ -1,12 +1,14 @@
 import {FC, useState} from 'react';
 import {Icon, Menu, Theme} from '@gravity-ui/uikit';
-import {Gear} from '@gravity-ui/icons';
+import {ArrowRightFromSquare} from '@gravity-ui/icons';
 import {AsideHeader} from '@gravity-ui/navigation';
 import {Wrapper} from '../Wrapper';
-import {Outlet} from 'react-router';
+import {Outlet, useLocation} from 'react-router';
 import {getMenuItems} from './MenuItems';
-import {useNavigate} from 'react-router-dom';
+import {Navigate, useNavigate} from 'react-router-dom';
 import {getLogo} from './Logo';
+import {useUnit} from 'effector-react';
+import {$accessToken, $isAuthInitialized, $logout} from '@/features/auth/model/authModel';
 
 interface LayoutProps {
     setTheme: (theme: Theme) => void;
@@ -15,8 +17,15 @@ interface LayoutProps {
 export const Layout: FC<LayoutProps> = ({setTheme}) => {
     const [isCompact, setCompact] = useState(true);
     const navigate = useNavigate();
+    const location = useLocation();
     const logo = getLogo();
     const menuItems = getMenuItems(navigate);
+
+    const [isAuth, isInitialized, logout] = useUnit([$accessToken, $isAuthInitialized, $logout]);
+
+    if (isInitialized && !isAuth && location.pathname !== '/login') {
+        return <Navigate to="/login" replace />;
+    }
 
     return (
         <AsideHeader
@@ -31,9 +40,14 @@ export const Layout: FC<LayoutProps> = ({setTheme}) => {
             menuItems={menuItems}
             renderFooter={() => (
                 <Menu>
+                    {/*<Menu.Item*/}
+                    {/*    iconStart={<Icon size={16} data={Gear} />}*/}
+                    {/*    title={'Item with icon'}*/}
+                    {/*/>*/}
                     <Menu.Item
-                        iconStart={<Icon size={16} data={Gear} />}
-                        title={'Item with icon'}
+                        iconStart={<Icon size={16} data={ArrowRightFromSquare} />}
+                        title={'Выйти'}
+                        onClick={logout}
                     />
                 </Menu>
             )}

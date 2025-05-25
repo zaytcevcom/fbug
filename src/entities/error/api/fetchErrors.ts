@@ -1,5 +1,5 @@
-import {API_BASE_URL} from '@/shared/config/api';
 import {Err} from '@/entities/error/model/types';
+import {apiClient} from '@/shared/api/apiClient';
 
 interface ErrorsResponse {
     count: number;
@@ -36,7 +36,7 @@ export const fetchErrors = async ({
         ...(filters.timeTo && {timeTo: filters.timeTo.toString()}),
     });
 
-    const response = await fetch(`${API_BASE_URL}/errors?${params}`);
+    const response = await apiClient(`/errors?${params}`);
 
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

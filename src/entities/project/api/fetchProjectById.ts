@@ -1,12 +1,12 @@
 import {Project} from '@/entities/project/model/types';
-import {API_BASE_URL} from '@/shared/config/api';
+import {apiClient} from '@/shared/api/apiClient';
 
 interface FetchProjectParams {
     id: string;
 }
 
 export const fetchProjectById = async ({id}: FetchProjectParams): Promise<Project> => {
-    const response = await fetch(`${API_BASE_URL}/projects/${id}`);
+    const response = await apiClient(`/projects/${id}`);
 
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

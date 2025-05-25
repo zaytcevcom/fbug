@@ -6,11 +6,16 @@ import {NotFoundPage} from '@/pages/NotFoundPage';
 import ErrorGroupPage from '@/pages/ErrorGroupPage/ErrorGroupPage';
 import ProjectPage from '@/pages/ProjectPage/ProjectPage';
 import LogGroupPage from '@/pages/LogGroupPage/LogGroupPage';
+import {LoginPage} from '@/pages/LoginPage/LoginPage';
 
 export const routes: RouteObject[] = [
     {
         path: '/',
         element: <ProjectsPage />,
+    },
+    {
+        path: '/login',
+        element: <LoginPage />,
     },
     {
         path: '/dashboard',

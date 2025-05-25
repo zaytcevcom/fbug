@@ -1,5 +1,5 @@
-import {API_BASE_URL} from '@/shared/config/api';
 import {LogGroup} from '@/entities/log/model/types';
+import {apiClient} from '@/shared/api/apiClient';
 
 interface LogGroupsResponse {
     count: number;
@@ -35,7 +35,7 @@ export const fetchLogGroups = async ({
         ...(filters.timeTo && {timeTo: filters.timeTo.toString()}),
     });
 
-    const response = await fetch(`${API_BASE_URL}/log-groups?${params}`);
+    const response = await apiClient(`/log-groups?${params}`);
 
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

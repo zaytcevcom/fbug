@@ -4,6 +4,7 @@ import {LOCAL_STORAGE_KEYS, THEMES} from './constants';
 import {RouterProvider, createBrowserRouter} from 'react-router';
 import {Layout} from '@/shared/Layout/Layout';
 import {routes} from '@/app/routes';
+import {AuthInit} from '@/features/auth/ui/AuthInit';
 
 const App = () => {
     const [theme, setTheme] = useState(() => {
@@ -19,9 +20,12 @@ const App = () => {
     ]);
 
     return (
-        <ThemeProvider theme={theme}>
-            <RouterProvider router={router} />
-        </ThemeProvider>
+        <>
+            <AuthInit />
+            <ThemeProvider theme={theme}>
+                <RouterProvider router={router} />
+            </ThemeProvider>
+        </>
     );
 };
 

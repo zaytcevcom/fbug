@@ -1,5 +1,5 @@
 import {Log} from '@/entities/log/model/types';
-import {API_BASE_URL} from '@/shared/config/api';
+import {apiClient} from '@/shared/api/apiClient';
 
 interface LogsResponse {
     count: number;
@@ -38,7 +38,7 @@ export const fetchLogs = async ({
         ...(filters.timeTo && {timeTo: filters.timeTo.toString()}),
     });
 
-    const response = await fetch(`${API_BASE_URL}/logs?${params}`);
+    const response = await apiClient(`/logs?${params}`);
 
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

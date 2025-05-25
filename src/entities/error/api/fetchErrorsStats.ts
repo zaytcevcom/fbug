@@ -1,4 +1,4 @@
-import {API_BASE_URL} from '@/shared/config/api';
+import {apiClient} from '@/shared/api/apiClient';
 
 export interface ErrorsStatsResponse {
     last24h: number;
@@ -20,7 +20,7 @@ export const fetchErrorsStats = async ({
         ...(groupId && {groupId: groupId}),
     });
 
-    const response = await fetch(`${API_BASE_URL}/errors/stats?${params}`);
+    const response = await apiClient(`/errors/stats?${params}`);
 
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

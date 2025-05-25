@@ -1,5 +1,5 @@
 import {Project} from '@/entities/project/model/types';
-import {API_BASE_URL} from '@/shared/config/api';
+import {apiClient} from '@/shared/api/apiClient';
 
 interface ProjectsResponse {
     count: number;
@@ -21,7 +21,7 @@ export const fetchProjects = async ({
         offset: ((page - 1) * pageSize).toString(),
     });
 
-    const response = await fetch(`${API_BASE_URL}/projects?${params}`);
+    const response = await apiClient(`/projects?${params}`);
 
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
