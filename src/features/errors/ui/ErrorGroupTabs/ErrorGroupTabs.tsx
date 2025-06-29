@@ -1,7 +1,7 @@
 import {Icon, Tab, TabList} from '@gravity-ui/uikit';
 import {BroadcastSignal, FileText, LayoutList, SquareDashed} from '@gravity-ui/icons';
 import React from 'react';
-import {Err} from '@/entities/error/model/types';
+import {type Err} from '@/entities/error';
 
 export enum ErrorGroupTabsState {
     STACK_TRACE = 'stackTrace',

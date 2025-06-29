@@ -21,7 +21,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({children, language = 'javascript'}
         try {
             const jsonObj = JSON.parse(String(children));
             processedChildren = JSON.stringify(jsonObj, null, 2);
-        } catch (e) {}
+        } catch {}
     }
 
     return (

@@ -1,5 +1,5 @@
 import {Text as GravityText, Label, TableColumnConfig} from '@gravity-ui/uikit';
-import {Err} from '@/entities/error/model/types';
+import {type Err} from '@/entities/error';
 import {formatDateTimeMilliseconds} from '@/shared/lib/format/formatDateMilliseconds';
 
 export const getErrorsTableColumns = (): TableColumnConfig<Err>[] => [

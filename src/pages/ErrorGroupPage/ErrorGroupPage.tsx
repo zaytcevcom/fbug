@@ -5,7 +5,7 @@ import {useErrors} from '@/features/errors/hooks/useErrors';
 import {ErrorsTable} from '@/features/errors/ui/ErrorsTable';
 import {ErrorsFilters} from '@/features/errors/ui/ErrorsFilters';
 import {ErrorDetail} from '@/features/errors/ui/ErrorDetail';
-import {Err} from '@/entities/error/model/types';
+import {type Err} from '@/entities/error';
 import {useEffect, useState} from 'react';
 import {StatBlock} from '@/shared/ui/StatBlock';
 import {Divider} from '@gravity-ui/uikit';

@@ -1,4 +1,4 @@
-import {ErrGroup} from '@/entities/error/model/types';
+import {ErrGroup} from '@/entities/error';
 import {apiClient} from '@/shared/api/apiClient';
 
 interface FetchErrorGroupParams {
