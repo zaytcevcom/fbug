@@ -1,6 +1,5 @@
 import {useCallback, useEffect, useState} from 'react';
-import {ErrGroup} from '@/entities/error/model/types';
-import {fetchErrorGroups} from '@/entities/error/api/fetchErrorGroups';
+import {type ErrGroup, fetchErrorGroups} from '@/entities/error';
 
 interface UseErrorGroupsProps {
     projectId?: string;

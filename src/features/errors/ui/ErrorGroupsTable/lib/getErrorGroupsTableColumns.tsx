@@ -1,7 +1,7 @@
 import {NavigateFunction} from 'react-router';
 import {Text as GravityText, Icon, Label, Link, TableColumnConfig} from '@gravity-ui/uikit';
 import {getErrorGroupPath} from '@/app/url-generators';
-import {ErrGroup} from '@/entities/error/model/types';
+import {type ErrGroup} from '@/entities/error';
 import {formatNumber} from '@/shared/lib/format/formatNumber';
 import {unixToHumanReadable} from '@/shared/lib/format/formatDateMilliseconds';
 import {Clock, ClockArrowRotateLeft} from '@gravity-ui/icons';

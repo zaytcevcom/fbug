@@ -1,6 +1,6 @@
 import {DataFetchError} from '@/shared/ui/DataFetchError';
 import {DataLoader} from '@/shared/ui/DataLoader';
-import {Err} from '@/entities/error/model/types';
+import {type Err} from '@/entities/error';
 import {getErrorsTableColumns} from '@/features/errors/ui/ErrorsTable/lib/getErrorsTableColumns';
 import Table from '@/shared/ui/Table/Table';
 import * as React from 'react';

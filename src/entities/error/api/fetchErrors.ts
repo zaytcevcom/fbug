@@ -1,4 +1,4 @@
-import {Err} from '@/entities/error/model/types';
+import {type Err} from '@/entities/error';
 import {apiClient} from '@/shared/api/apiClient';
 
 interface ErrorsResponse {

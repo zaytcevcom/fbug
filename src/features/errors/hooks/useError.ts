@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
-import {Err} from '@/entities/error/model/types';
-import {fetchErrorById} from '@/entities/error/api/fetchErrorById';
+import {type Err, fetchErrorById} from '@/entities/error';
 
 interface UseErrorProps {
     id?: string | null;

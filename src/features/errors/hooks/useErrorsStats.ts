@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {ErrorsStatsResponse, fetchErrorsStats} from '@/entities/error/api/fetchErrorsStats';
+import {type ErrorsStatsResponse, fetchErrorsStats} from '@/entities/error';
 
 interface UseErrorsStatsProps {
     projectId?: string;

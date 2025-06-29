@@ -1,0 +1,8 @@
+{
+  "eslint": {
+    "enable": true,
+    "use_global_eslint": false,
+    "rules.customizations": {},
+    "working_directory": "./"
+  }
+}
