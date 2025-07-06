@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import Prism from 'prismjs';
 
 type CodeBlockProps = {
-    children?: object;
+    children?: unknown;
     language?: string;
 };
 
