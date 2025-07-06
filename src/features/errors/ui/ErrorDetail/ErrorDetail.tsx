@@ -1,6 +1,5 @@
 import {DataFetchError} from '@/shared/ui/DataFetchError';
 import {DataLoader} from '@/shared/ui/DataLoader';
-import StackTrace from '@/shared/ui/StackTrace/StackTrace';
 import {useError} from '@/features/errors/hooks/useError';
 import {formatDateTimeMilliseconds} from '@/shared/lib/format/formatDateMilliseconds';
 import {Card, Text as GravityText, Label} from '@gravity-ui/uikit';
@@ -40,11 +39,12 @@ export const ErrorDetail = ({id}: ErrorDetailProps) => {
             <ErrorGroupTabs activeTab={activeTab} setActiveTab={setActiveTab} err={err} />
 
             {activeTab === ErrorGroupTabsState.STACK_TRACE && (
-                <StackTrace stacktrace={err.stacktrace} />
+                //<StackTrace stacktrace={err.stacktrace} />
+                <CodeBlock language={'json'}>{err.stacktrace}</CodeBlock>
             )}
 
             {activeTab === ErrorGroupTabsState.CONTEXT && (
-                <CodeBlock language={'json'}>{JSON.stringify(err.context)}</CodeBlock>
+                <CodeBlock language={'json'}>{err.context}</CodeBlock>
             )}
 
             {activeTab === ErrorGroupTabsState.REQUEST && (

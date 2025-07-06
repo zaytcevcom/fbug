@@ -3,7 +3,7 @@ export interface Err {
     message: string;
     file: string;
     line: number;
-    stacktrace: string;
+    stacktrace?: Array<unknown>;
     context?: Record<string, unknown> | Array<unknown>;
     ip?: string;
     url?: string;

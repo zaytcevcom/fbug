@@ -2,7 +2,7 @@ export interface Log {
     id: string;
     level: 'DEBUG' | 'INFO' | 'WARN' | 'ERROR';
     message: string;
-    context: string;
+    context?: Record<string, unknown> | Array<unknown>;
     time: number;
 }
 
