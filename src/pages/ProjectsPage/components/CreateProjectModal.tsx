@@ -1,4 +1,4 @@
-import {Modal} from '@/shared/ui/Modal/Modal';
+import {Modal} from '@/shared/ui/Modal';
 import {Button, type ModalProps, TextInput} from '@gravity-ui/uikit';
 import {useRef} from 'react';
 import {useHotkeys} from 'react-hotkeys-hook';

@@ -1,4 +1,9 @@
-import {Button, Modal as GUIModal, type ModalProps as GUIModalProps} from '@gravity-ui/uikit';
+import {
+    Button,
+    Modal as GUIModal,
+    type ModalProps as GUIModalProps,
+    Text as GUIText,
+} from '@gravity-ui/uikit';
 import {CircleXmarkFill} from '@gravity-ui/icons';
 
 interface ModalProps extends GUIModalProps {
@@ -24,7 +29,7 @@ export const Modal = ({title, children, ...props}: ModalProps) => {
                 >
                     <div style={{width: 40, height: 40}} />
                     <div style={{flex: 1, alignSelf: 'center'}}>
-                        <Text variant="header-1">{title}</Text>
+                        <GUIText variant="header-1">{title}</GUIText>
                     </div>
                     <Button
                         view="flat"
