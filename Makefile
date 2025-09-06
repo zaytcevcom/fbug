@@ -46,8 +46,8 @@ stylelint:
 prettier:
 	docker compose run --rm frontend-node-cli npm run lint:prettier
 
-eslint-fix:
-	docker compose run --rm frontend-node-cli npm run eslint-fix
+lint-fix:
+	docker compose run --rm frontend-node-cli npm run lint:fix
 
 
 #Build

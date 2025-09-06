@@ -11,16 +11,24 @@ interface ProjectsListProps {
     error: string | null;
     navigate: NavigateFunction;
     onRetry: () => void;
+    onDelete?: (id: string) => void;
 }
 
-export const ProjectsTable = ({projects, loading, error, navigate, onRetry}: ProjectsListProps) => {
+export const ProjectsTable = ({
+    projects,
+    loading,
+    error,
+    navigate,
+    onRetry,
+    onDelete,
+}: ProjectsListProps) => {
     if (loading) return <DataLoader />;
     if (error) return <DataFetchError errorMessage={error} onRetry={onRetry} />;
 
     return (
         <Table
             data={projects}
-            columns={getProjectsTableColumns(navigate)}
+            columns={getProjectsTableColumns(navigate, onDelete)}
             emptyMessage="Нет доступных проектов"
         />
     );

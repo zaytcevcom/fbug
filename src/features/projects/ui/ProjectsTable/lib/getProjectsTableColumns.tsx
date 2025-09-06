@@ -1,11 +1,12 @@
 import {Project} from '@/entities/project/model/types';
-import {Text as GravityText, Icon, Link, TableColumnConfig} from '@gravity-ui/uikit';
-import {Folder} from '@gravity-ui/icons';
+import {Button, Text as GravityText, Icon, Link, TableColumnConfig} from '@gravity-ui/uikit';
+import {Folder, TrashBin} from '@gravity-ui/icons';
 import {NavigateFunction} from 'react-router';
 import {getProjectPath} from '@/app/url-generators';
 
 export const getProjectsTableColumns = (
     navigate: NavigateFunction,
+    onDelete?: (id: string) => void,
 ): TableColumnConfig<Project>[] => [
     {
         id: 'name',
@@ -20,6 +21,22 @@ export const getProjectsTableColumns = (
                         <GravityText variant="subheader-2">{project.name}</GravityText>
                     </div>
                 </Link>
+            );
+        },
+    },
+    {
+        id: 'actions',
+        name: 'Действия',
+        template: (project: Project) => {
+            return (
+                <Button
+                    view="outlined-danger"
+                    size="s"
+                    onClick={() => onDelete?.(project.id)}
+                    disabled={!onDelete}
+                >
+                    <Icon data={TrashBin} size={16} />
+                </Button>
             );
         },
     },
