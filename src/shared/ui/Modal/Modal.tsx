@@ -11,7 +11,7 @@ interface ModalProps extends GUIModalProps {
 }
 export const Modal = ({title, children, onOpenChange, ...props}: ModalProps) => {
     return (
-        <GUIModal {...props}>
+        <GUIModal {...props} onOpenChange={onOpenChange}>
             <div
                 style={{
                     padding: '16px',
