@@ -29,14 +29,16 @@ export const getProjectsTableColumns = (
         name: 'Действия',
         template: (project: Project) => {
             return (
-                <Button
-                    view="outlined-danger"
-                    size="s"
-                    onClick={() => onDelete?.(project.id)}
-                    disabled={!onDelete}
-                >
-                    <Icon data={TrashBin} size={16} />
-                </Button>
+                <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+                    <Button
+                        view="outlined"
+                        size="s"
+                        onClick={() => onDelete?.(project.id)}
+                        disabled={!onDelete}
+                    >
+                        <Icon data={TrashBin} size={16} />
+                    </Button>
+                </div>
             );
         },
     },

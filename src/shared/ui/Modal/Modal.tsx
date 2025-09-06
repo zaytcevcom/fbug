@@ -9,7 +9,7 @@ import {CircleXmarkFill} from '@gravity-ui/icons';
 interface ModalProps extends GUIModalProps {
     title: string;
 }
-export const Modal = ({title, children, ...props}: ModalProps) => {
+export const Modal = ({title, children, onOpenChange, ...props}: ModalProps) => {
     return (
         <GUIModal {...props}>
             <div
@@ -37,7 +37,7 @@ export const Modal = ({title, children, ...props}: ModalProps) => {
                             width: 40,
                             height: 40,
                         }}
-                        onClick={() => {}}
+                        onClick={() => onOpenChange?.(false)}
                     >
                         <div
                             style={{

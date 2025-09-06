@@ -35,7 +35,6 @@ export const CreateProjectModal = ({
             onTransitionInComplete={focusInput}
             title="Создать проект"
             disableBodyScrollLock={creatingProject}
-            disableEscapeKeyDown={creatingProject}
             disableOutsideClick={creatingProject}
             disableVisuallyHiddenDismiss={creatingProject}
         >
