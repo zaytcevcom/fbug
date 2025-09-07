@@ -1,7 +1,7 @@
 import React from 'react';
 import block from 'bem-cn-lite';
 import {Button, Icon, Theme, useThemeValue} from '@gravity-ui/uikit';
-import {BellDot, Moon, Sun} from '@gravity-ui/icons';
+import {Moon, Sun} from '@gravity-ui/icons';
 import {LOCAL_STORAGE_KEYS, THEMES} from '@/app/constants';
 import './Wrapper.scss';
 
@@ -26,11 +26,18 @@ export const Wrapper: React.FC<AppProps> = ({children, setTheme}) => {
         <div className={b()}>
             <div
                 className={b('theme-button')}
-                style={{display: 'flex', gap: '8px', flexWrap: 'wrap'}}
+                style={{
+                    display: 'flex',
+                    gap: '8px',
+                    flexWrap: 'wrap',
+                    height: '56px',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}
             >
-                <Button size="l" view="outlined">
+                {/*<Button size="l" view="outlined">
                     <Icon data={BellDot} />
-                </Button>
+                </Button>*/}
                 <Button size="l" view="outlined" onClick={handleChangeTheme}>
                     <Icon data={isDark ? Sun : Moon} />
                 </Button>
