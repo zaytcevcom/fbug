@@ -33,13 +33,20 @@ export const getLogGroupsTableColumns = (
     {
         id: 'message',
         name: 'Лог',
+        width: '100%',
         template: (group: LogGroup) => {
             return (
-                <>
+                <div>
                     <Link
                         title={group.message}
                         onClick={() => navigate(getLogGroupPath(projectId, group.id))}
                         href={''}
+                        style={{
+                            display: '-webkit-box',
+                            WebkitLineClamp: 3,
+                            WebkitBoxOrient: 'vertical',
+                            overflow: 'hidden',
+                        }}
                     >
                         {group.message}
                     </Link>
@@ -53,7 +60,7 @@ export const getLogGroupsTableColumns = (
                             </>
                         )}
                     </GravityText>
-                </>
+                </div>
             );
         },
     },
